@@ -1,0 +1,15 @@
+{
+  "name": "methaeuristica",
+  "version": "1.0.0",
+  "description": "Methaeuristica aplicada ao caxeiro viajante",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Daniel",
+  "license": "ISC"
+}

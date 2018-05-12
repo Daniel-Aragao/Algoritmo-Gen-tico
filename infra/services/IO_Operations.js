@@ -21,20 +21,23 @@ module.exports = {
         return cities;
     },
     /**
-     * Search the file of distances and return if exists, return null if not
+     * Search the file of distances and return a string array of lines if exists, return null if not
      * @param {String} path
      */
     CITDistancesReader: function(path){
-        throw "TODO - Retornar só a string em utf8"
-        return null;
+        if(!fileSystem.existsSync(path)){
+            return null;
+        }
+
+        let file = fileSystem.readFileSync(path, { encoding: 'utf8' });
+        return file.split('\n');
     },
 
     /**
      * Save the matrix of the CIT file name in the distances directory
-     * @param {[][]} matrix
+     * @param {{}} matrix
      */
-    CITDistancesWrite: function(matrix){
-        dir = "../../misc/distances/";
-        throw "TODO - escrever a string no formato específicado no arquivo 'ImportCitiesDistances' utilizando utf8";
+    CITDistancesWrite: function(str, file){
+        fileSystem.writeFileSync(file, str);
     }
 }

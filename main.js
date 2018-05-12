@@ -14,7 +14,6 @@ parameters = {
 }
 
 let cities = IOops.CITRead(parameters.file);
-let distanceMatrix = CitiesDistances.getMatrix(parameters.file);
-// IOops.CITDistancesWrite(distanceMatrix);
+let distanceMatrix = CitiesDistances.getMatrix(cities, parameters.file);
 
 PopulationControl(cities, distanceMatrix, parameters)

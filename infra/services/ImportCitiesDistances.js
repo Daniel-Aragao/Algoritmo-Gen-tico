@@ -38,6 +38,9 @@ function makeDistanceMatrix(cities, filedir){
 
                 matrix[city1.id][city2.id] = d;                
                 str += city1.id + "," + city2.id + "," + d + '\n';
+            }else{
+                matrix[city1.id][city2.id] = 0;                
+                str += city1.id + "," + city2.id + "," + 0 + '\n';
             }
         });
     });

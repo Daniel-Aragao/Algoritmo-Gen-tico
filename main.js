@@ -1,4 +1,4 @@
-const PopulationControl = require('./infra/services/PopulationControl')
+const PopulationControl = require('./infra/services/PopulationControl');
 const IOops = require('./infra/services/IO_Operations');
 const CitiesDistances = require('./infra/services/ImportCitiesDistances');
 
@@ -16,4 +16,4 @@ parameters = {
 let cities = IOops.CITRead(parameters.file);
 let distanceMatrix = CitiesDistances.getMatrix(cities, parameters.file);
 
-PopulationControl(cities, distanceMatrix, parameters)
+PopulationControl(cities, distanceMatrix, parameters);

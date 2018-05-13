@@ -9,14 +9,14 @@ var city_distance_map = null;
 function getFitness(cities){
     let total = 0;
     
-    for (let index = 0; index < cities.length - 1; index+=2) {
+    for (let index = 0; index < cities.length - 1; index++) {
         const cityOrigin = cities[index];
         const cityDestiny = cities[index + 1];
         
         total += city_distance_map[cityOrigin.id, cityDestiny.id];
     }
     
-    total += city_distance_map[cities[index + 1].id, cities[0].id];
+    total += city_distance_map[cities[index].id, cities[0].id];
 
     return total;
 }
@@ -36,15 +36,15 @@ function getRandomArbitrary(min, max) {
  */
 function mutate(cities){
     a = getRandomArbitrary(0, cities.length);
-    b = a
+    b = a;
 
     while(b == a){
         b = getRandomArbitrary(0, cities.length);
     }
 
     c = cities[a];
-    cities[a] = cities[b]
-    cities[b] = c
+    cities[a] = cities[b];
+    cities[b] = c;
 }
 /**
  * Apply the mating algorithm PMX and return two resulting Subjects in a Array
@@ -77,7 +77,7 @@ let Subject = function(cities, mutate=False){
  */
 module.exports = function(city_distance_map){
     if(!city_distance_map){
-        throw ReferenceError("city_distance_map can't be null on Subject importing")
+        throw ReferenceError("city_distance_map can't be null on Subject importing");
     }
     return Subject;
 }

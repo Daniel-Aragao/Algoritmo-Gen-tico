@@ -55,7 +55,7 @@ function mating(male, female){
     throw "TODO - implementar PMX";
 }
 
-let Subject = function(cities, mutate=False){
+let Subject = function(cities, mutate){
     this.cities = cities;
     this.fitness = getFitness(cities);
 
@@ -79,5 +79,8 @@ module.exports = function(city_distance_map){
     if(!city_distance_map){
         throw ReferenceError("city_distance_map can't be null on Subject importing");
     }
+
+    city_distance_map = city_distance_map;
+
     return Subject;
 }

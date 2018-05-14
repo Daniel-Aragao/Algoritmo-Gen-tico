@@ -1,3 +1,5 @@
+require('./infra/services/Utils');
+
 const PopulationControl = require('./infra/services/PopulationControl');
 const IOops = require('./infra/services/IO_Operations');
 const CitiesDistances = require('./infra/services/ImportCitiesDistances');

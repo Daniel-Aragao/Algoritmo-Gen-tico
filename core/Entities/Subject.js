@@ -8,8 +8,8 @@ var city_distance_map = null;
  */
 function getFitness(cities){
     let total = 0;
-    
-    for (let index = 0; index < cities.length - 1; index++) {
+    let index;
+    for (index = 0; index < cities.length - 1; index++) {
         const cityOrigin = cities[index];
         const cityDestiny = cities[index + 1];
         
@@ -75,12 +75,12 @@ let Subject = function(cities, mutate){
  * 
  * @param {[][]} city_distance_map 
  */
-module.exports = function(city_distance_map){
-    if(!city_distance_map){
+module.exports = function(distanceMatrix){
+    if(!distanceMatrix){
         throw ReferenceError("city_distance_map can't be null on Subject importing");
     }
 
-    city_distance_map = city_distance_map;
+    city_distance_map = distanceMatrix;
 
     return Subject;
 }

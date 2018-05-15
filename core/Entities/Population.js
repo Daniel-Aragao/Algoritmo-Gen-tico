@@ -4,7 +4,7 @@ function generatePopulation(cities, Subject, size){
     let subjects = [];
 
     for(let i = 0; i < size; i++){
-        subject = Subject(cities.shuffle());
+        subject = new Subject(cities.shuffle());
         subjects.push(subject);
     }
 

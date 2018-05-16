@@ -7,7 +7,7 @@ function generatePopulation(cities, Subject, size){
         subject = new Subject(cities.shuffle());
         subjects.push(subject);
     }
-
+    
     return subjects;
 }
 
@@ -23,6 +23,8 @@ let Population = function (size, cities, Subject){
     this.subjects = generatePopulation(cities, Subject, size);
 
     this.firstSubject = cities;
+
+    
 }
 
 module.exports = Population;

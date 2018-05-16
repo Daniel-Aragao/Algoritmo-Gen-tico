@@ -10,6 +10,10 @@ var City = function(id,x,y){
     this.getDistance = function(city){
         return Math.sqrt(Math.pow(this.x - city.x, 2) + Math.pow(this.y - city.y,2));
     }
+
+    this.toString = function(){
+        return "("+this.id+","+this.x+","+this.y+")"
+    }
 }
 
 module.exports = City;

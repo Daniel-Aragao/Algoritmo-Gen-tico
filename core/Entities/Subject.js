@@ -9,14 +9,16 @@ var city_distance_map = null;
 function getFitness(cities){
     let total = 0;
     let index;
+    // console.log(city_distance_map);
     for (index = 0; index < cities.length - 1; index++) {
         const cityOrigin = cities[index];
         const cityDestiny = cities[index + 1];
         
-        total += city_distance_map[cityOrigin.id, cityDestiny.id];
+        total += city_distance_map[cityOrigin.id][cityDestiny.id];
+        // console.log(city_distance_map[cityOrigin.id][cityDestiny.id])
     }
     
-    total += city_distance_map[cities[index].id, cities[0].id];
+    total += city_distance_map[cities[index].id][cities[0].id];
 
     return total;
 }
@@ -69,7 +71,14 @@ let Subject = function(cities, mutate){
     this.mating = function(female){
         return mating(this, female);
     }
+
+    this.toString = function(){
+        return this.fitness.toString();
+        // return this.cities.toString();
+    }
 }
+
+// Subject.prototype.toString = 
 
 /**
  * 

@@ -1,7 +1,9 @@
 Number.prototype.getRandomInt = function(max) {
     let min = this;
+    
     min = Math.ceil(min);
     max = Math.floor(max);
+
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
@@ -15,9 +17,20 @@ Array.prototype.shuffle = function(){
         while(runned_indexes.findIndex(e => e == includIn) > -1){
             includIn = (0).getRandomInt(this.length);
         }
+
         runned_indexes.push(includIn);
 
         result[includIn] = this[i];
     }
-    return result;   
+    return result;
+}
+
+Array.prototype.toString = function(){
+    let result = "["
+
+    this.forEach(function(e){
+        result += ", " + e.toString();
+    });
+    result = result.replace(', ', '');
+    return result += "]";
 }

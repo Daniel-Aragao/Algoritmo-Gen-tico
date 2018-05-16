@@ -9,7 +9,7 @@ module.exports = {
 
         file.split('\n').forEach(function(element, index){
             if(index){
-                coordinates = element.split(',');
+                coordinates = element.split(' ');
                 
                 x = coordinates[0];
                 y = coordinates[1];

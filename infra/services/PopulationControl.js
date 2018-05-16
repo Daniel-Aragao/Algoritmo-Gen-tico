@@ -7,9 +7,10 @@ const service = function(cities, distanceMatrix, routine_parameters){
     let population = new Population(routine_parameters.population, cities, Subject);
     
     //Avaliação da População
-
+    
     //WHILE Critério de Parada:
         //Seleção
+    population.select(routine_parameters.selection_algorithm)
         //Cruzamento
         //Mutação
         //Avaliação da População

@@ -5,7 +5,7 @@ const IOops = require('./infra/services/IO_Operations');
 const CitiesDistances = require('./infra/services/ImportCitiesDistances');
 
 parameters = {
-    file: './misc/input/21CIT.txt',
+    file: './misc/input/100CIT.txt',
     population: 5,
     tax_crossover: 0.75,
     tax_mutation: 0.1,

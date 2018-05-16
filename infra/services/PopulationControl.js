@@ -10,7 +10,7 @@ const service = function(cities, distanceMatrix, routine_parameters){
     
     //WHILE Critério de Parada:
         //Seleção
-    population.select(routine_parameters.selection_algorithm)
+    // population.select(routine_parameters.selection_algorithm)
         //Cruzamento
         //Mutação
         //Avaliação da População

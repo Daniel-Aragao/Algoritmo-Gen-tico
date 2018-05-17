@@ -53,7 +53,7 @@ function mutate(cities){
  * @param {Subject} male 
  * @param {Subject} female 
  */
-function mating(male, female){
+function PMX(male, female){
     throw "TODO - implementar PMX";
 }
 
@@ -61,15 +61,19 @@ let Subject = function(cities, mutate){
     this.cities = cities;
     this.fitness = getFitness(cities);
 
-    if(mutate){
-        mutate(cities)
+    // if(mutate){
+    //     mutate(cities)
+    // }
+
+    this.mutate = function(){
+        mutate(this.cities)
     }
     /**
      * Apply the mating algorithm PMX and return two resulting Subjects in a Array
      * @param {Subject} subject 
      */
-    this.mating = function(female){
-        return mating(this, female);
+    this.crossOver = function(female){
+        return PMX(this, female);
     }
 
     this.toString = function(){
@@ -77,8 +81,6 @@ let Subject = function(cities, mutate){
         // return this.cities.toString();
     }
 }
-
-// Subject.prototype.toString = 
 
 /**
  * 

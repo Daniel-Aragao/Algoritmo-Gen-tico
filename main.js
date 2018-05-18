@@ -3,6 +3,7 @@ require('./infra/services/Utils');
 const PopulationControl = require('./infra/services/PopulationControl');
 const IOops = require('./infra/services/IO_Operations');
 const CitiesDistances = require('./infra/services/ImportCitiesDistances');
+const mailConfig = require('./infra/services/MailConfig');
 
 parameters = {
     file: './misc/input/100CIT.txt',
@@ -17,6 +18,8 @@ parameters = {
 
 let cities = IOops.CITRead(parameters.file);
 let distanceMatrix = CitiesDistances.getMatrix(cities, parameters.file);
+
+//mailConfig()
 
 // executar assíncronamente após inicializar tela principal do electron, possubilitando a alteração dos parâmetros por meio da interface
 PopulationControl(cities, distanceMatrix, parameters);

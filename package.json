@@ -12,7 +12,8 @@
   "author": "Daniel",
   "license": "ISC",
   "dependencies": {
-    "electron": "^2.0.0"
+    "electron": "^2.0.0",
+    "nodemailer": "^4.6.4"
   },
   "devDependencies": {
     "electron-packager": "^12.0.1"

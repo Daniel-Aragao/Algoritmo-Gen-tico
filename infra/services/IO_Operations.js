@@ -39,5 +39,20 @@ module.exports = {
      */
     CITDistancesWrite: function(str, file){
         fileSystem.writeFileSync(file, str);
+    },
+
+    getEmailAuth: function(){
+        let path = 'misc/emailconfig';
+
+        if(!fileSystem.existsSync(path)){
+            return null;
+        }
+        
+        let text = fileSystem.readFileSync(path, { encoding: 'utf8' }).split(';');
+        let auth = {
+            user: text[0],
+            pass: text[1]
+          }
+        return ;
     }
 }

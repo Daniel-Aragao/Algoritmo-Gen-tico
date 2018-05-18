@@ -7,6 +7,11 @@ Number.prototype.getRandomInt = function(max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
+Number.prototype.getRandomArbitrary = function (max) {
+    let min = this;
+    return Math.random() * (max - min) + min;
+  }
+
 Array.prototype.shuffle = function(){
     var result = [];
     var runned_indexes = [-1];

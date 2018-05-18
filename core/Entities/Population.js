@@ -1,4 +1,4 @@
-const Subject = require("./Subject");
+//const Subject = require("./Subject");
 
 function generatePopulation(cities, Subject, size){
     let subjects = [];
@@ -8,7 +8,18 @@ function generatePopulation(cities, Subject, size){
         subjects.push(subject);
     }
     
+    subjects.sort(sortInterface);    
     return subjects;
+}
+
+function sortInterface(a,b){
+    if(a.fitness < b.fitness){
+        return -1;
+    }else if(a.fitness > b.fitness){
+        return 1;
+    }else{
+        return 0;
+    }
 }
 
 /**
@@ -20,6 +31,8 @@ function generatePopulation(cities, Subject, size){
  * @param {Subject} generateInitialPopulation 
  */
 let Population = function (size, cities, Subject){
+    this.size = size;
+
     this.subjects = generatePopulation(cities, Subject, size);
 
     this.firstSubject = cities;
@@ -55,19 +68,23 @@ let Population = function (size, cities, Subject){
         });
     }
 
+    /**
+     * reload the internal subjects array to the right population size 
+     * @param {Subject[]} newSubjects 
+     */
     this.Reduce = function(newSubjects){
-        // criar mais um array de subjects, pegar o antigo e o parametro e juntar no novo array de forma ORDENADA
-        
         let total = this.subjects.concat(newSubjects);
-        total.reduce
-        throw "TODO - Implementar fase do elitismo selecionando entre os novos subjects e os antigos; manter o array ordenado";
+
+        total.sort(sortInterface);
+
+        this.subjects = total.slice(0, this.size);
     }
 
     /**
      * Return the Subject with the best fitness
      */
     this.getBestFitness = function(){
-        return this.subject[0];
+        return this.subjects[0];
     }
 }
 

@@ -105,6 +105,8 @@ function PMX(male, female) {
         var index1 = -1;
         var index2 = -1;
 
+        
+
         // Search for an equal value of the male array in the cut of the female array. Gets the index of the position in case it finds 
         for (i = 0; i < map.length; i++) {
             if (male.cities[w] == map[i][F]) {
@@ -122,8 +124,12 @@ function PMX(male, female) {
         }
 
         // sets the auxiliar variables to the value of the index
-        var aux1 = index1;
+        var aux1 = index1; 
         var aux2 = index2;
+
+        console.log("Tamanho corte -1: " + map.length-1);
+        console.log("Aux 1 = " + aux1);
+        console.log("Aux 2 = " + aux2);
 
         // if index is different from standard it runs 
         while (index1 >= 0) {
@@ -136,7 +142,7 @@ function PMX(male, female) {
                     if (i = 0 && aux1 > init) {
                         aux1 = init
                     } else {
-                        if (index1 > init && aux == index - 1) {
+                        if (index1 > init && aux1 == index1 - 1) {
                             aux1 = aux1 + 2;
                         } else {
                             aux1 = aux1 + 1;
@@ -162,7 +168,7 @@ function PMX(male, female) {
                         aux2 = init;
 
                     } else {
-                        if (index2 > init && aux == index - 1) {
+                        if (index2 > init && aux2 == index2 - 1) {
                             aux2 = aux2 + 2;
                         } else {
                             aux2 = aux2 + 1;
@@ -228,7 +234,7 @@ function PMX(male, female) {
                     if (i = 0 && aux1 > init) {
                         aux1 = init
                     } else {
-                        if (index1 > init && aux == index - 1) {
+                        if (index1 > init && aux1 == index1 - 1) {
                             aux1 = aux1 + 2;
                         } else {
                             aux1 = aux1 + 1;
@@ -255,7 +261,7 @@ function PMX(male, female) {
                     if (i = 0 && aux2 > init) {
                         aux2 = init
                     } else {
-                        if (index2 > init && aux == index - 1) {
+                        if (index2 > init && aux2 == index2 - 1) {
                             aux2 = aux2 + 2;
                         } else {
                             aux2 = aux2 + 1;

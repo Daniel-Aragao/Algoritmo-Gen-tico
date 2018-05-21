@@ -42,7 +42,7 @@ function continueGenerating(population, generation, iterations){
     let newSubject = population.getBestFitness();
     let oldSubject = gen.subject;
 
-    if(oldSubject && oldSubject.fitness < newSubject.fitness){
+    if(oldSubject && oldSubject.fitness <= newSubject.fitness){
         if(generation.counter - gen.id >= iterations){
             return false;
         }

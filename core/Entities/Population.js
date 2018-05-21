@@ -48,8 +48,10 @@ let Population = function (size, cities, Subject){
         selections.forEach(tuple => {
             let male = tuple[0];
             let female = tuple[1];
-
-            result = result.concat(male.crossOver(female));
+            
+            if(Math.random() <= tax){
+                result = result.concat(male.crossOver(female));
+            }
         });
 
         return result;

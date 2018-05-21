@@ -144,183 +144,181 @@ function PMX(male, female) {
                         }
                         break;
                     }
-
-                    //sets the new value of the offspring after the array has been completly read
-                    if (i + 1 == map.length) {
-                        index1 = -1;
-                        offspring1[w] = map[aux1][M];
-                    }
+                }
+                //sets the new value of the offspring after the array has been completly read
+                if (i + 1 == map.length) {
+                    index1 = -1;
+                    offspring1[w] = map[aux1][M];
                 }
             }
+        }
 
-            // if index is different from standard it runs 
-            while (index2 >= 0) {
 
-                // Search the corresponding index of the female cut array in the male cut array 
-                for (i = 0; i < map.length; i++) {
+        // if index is different from standard it runs 
+        while (index2 >= 0) {
 
-                    //Goes to the following index in case it finds an equal 
-                    if (map[aux2][F] == map[i][M]) {
-                        if (i = 0 && aux2 > init) {
-                            aux2 = init
+            // Search the corresponding index of the female cut array in the male cut array 
+            for (i = 0; i < map.length; i++) {
+
+                //Goes to the following index in case it finds an equal 
+                if (map[aux2][F] == map[i][M]) {
+                    if (i = 0 && aux2 > init) {
+                        aux2 = init
+                    } else {
+                        if (index2 > init && aux == index - 1) {
+                            aux2 = aux2 + 2;
                         } else {
-                            if (index2 > init && aux == index - 1) {
-                                aux2 = aux2 + 2;
-                            } else {
-                                aux2 = aux2 + 1;
-                            }
-                            break;
+                            aux2 = aux2 + 1;
                         }
-
-                        //sets the new value of the offspring after the array has been completly read
-                        if (i + 1 == map.length) {
-                            index2 = -1;
-                            offspring2[w] = map[aux2][F];
-                        }
+                        break;
                     }
                 }
-
-                //sets the same value to the offspring if no value is found in the female cut array
-                if (aux1 < 0) {
-                    offspring1[w] = male[w];
+                //sets the new value of the offspring after the array has been completly read
+                if (i + 1 == map.length) {
+                    index2 = -1;
+                    offspring2[w] = map[aux2][F];
                 }
-
-                //sets the same value to the offspring if no value is found in the male cut array
-                if (aux2 < 0) {
-                    offspring2[w] = female[w];
-                }
-
             }
+        }
 
-            // completes the offspring array from the end of the cut array to the end of the parent array
+        //sets the same value to the offspring if no value is found in the female cut array
+        if (aux1 < 0) {
+            offspring1[w] = male[w];
+        }
 
-            for (w = end + 1; w < male.length; w++) {
+        //sets the same value to the offspring if no value is found in the male cut array
+        if (aux2 < 0) {
+            offspring2[w] = female[w];
+        }
 
-                // sets index to standard
-                var index1 = -1;
-                var index2 = -1;
+    }
 
-                // Search for an equal value of the male array in the cut of the female array. Gets the index of the position in case it finds 
-                for (i = 0; i < map.length; i++) {
-                    if (male[w] == map[i][F]) {
-                        index1 = i;
+    // completes the offspring array from the end of the cut array to the end of the parent array
+
+    for (w = end + 1; w < male.length; w++) {
+
+        // sets index to standard
+        var index1 = -1;
+        var index2 = -1;
+
+        // Search for an equal value of the male array in the cut of the female array. Gets the index of the position in case it finds 
+        for (i = 0; i < map.length; i++) {
+            if (male[w] == map[i][F]) {
+                index1 = i;
+                break;
+            }
+        }
+
+        // Search for an equal value of the female array in the cut of the male array. Gets the index of the position in case it finds 
+        for (i = 0; i < map.length; i++) {
+            if (female[w] == map[i][M]) {
+                index2 = i;
+                break;
+            }
+        }
+
+        // sets the auxiliar variables to the value of the index
+        var aux1 = index1;
+        var aux2 = index2;
+
+        // if index is different from standard it runs 
+        while (index1 >= 0) {
+
+            // Search the corresponding index of the male cut array in the female cut array 
+            for (i = 0; i < map.length; i++) {
+
+                //Goes to the following index in case it finds an equal 
+                if (map[aux1][M] == map[i][F]) {
+                    if (i = 0 && aux1 > init) {
+                        aux1 = init
+                    } else {
+                        if (index1 > init && aux == index - 1) {
+                            aux1 = aux1 + 2;
+                        } else {
+                            aux1 = aux1 + 1;
+                        }
                         break;
                     }
                 }
+                //sets the new value of the offspring after the array has been completly read
+                if (i + 1 == map.length) {
+                    index1 = -1;
+                    offspring1[w] = map[aux1][M];
+                }
+            }
+        }
 
-                // Search for an equal value of the female array in the cut of the male array. Gets the index of the position in case it finds 
-                for (i = 0; i < map.length; i++) {
-                    if (female[w] == map[i][M]) {
-                        index2 = i;
+        // if index is different from standard it runs 
+        while (index2 >= 0) {
+
+            // Search the corresponding index of the female cut array in the male cut array 
+            for (i = 0; i < map.length; i++) {
+
+                //Goes to the following index in case it finds an equal 
+                if (map[aux2][F] == map[i][M]) {
+                    if (i = 0 && aux2 > init) {
+                        aux2 = init
+                    } else {
+                        if (index2 > init && aux == index - 1) {
+                            aux2 = aux2 + 2;
+                        } else {
+                            aux2 = aux2 + 1;
+                        }
                         break;
                     }
                 }
-
-                // sets the auxiliar variables to the value of the index
-                var aux1 = index1;
-                var aux2 = index2;
-
-                // if index is different from standard it runs 
-                while (index1 >= 0) {
-
-                    // Search the corresponding index of the male cut array in the female cut array 
-                    for (i = 0; i < map.length; i++) {
-
-                        //Goes to the following index in case it finds an equal 
-                        if (map[aux1][M] == map[i][F]) {
-                            if (i = 0 && aux1 > init) {
-                                aux1 = init
-                            } else {
-                                if (index1 > init && aux == index - 1) {
-                                    aux1 = aux1 + 2;
-                                } else {
-                                    aux1 = aux1 + 1;
-                                }
-                                break;
-                            }
-
-                            //sets the new value of the offspring after the array has been completly read
-                            if (i + 1 == map.length) {
-                                index1 = -1;
-                                offspring1[w] = map[aux1][M];
-                            }
-                        }
-                    }
-
-                    // if index is different from standard it runs 
-                    while (index2 >= 0) {
-
-                        // Search the corresponding index of the female cut array in the male cut array 
-                        for (i = 0; i < map.length; i++) {
-
-                            //Goes to the following index in case it finds an equal 
-                            if (map[aux2][F] == map[i][M]) {
-                                if (i = 0 && aux2 > init) {
-                                    aux2 = init
-                                } else {
-                                    if (index2 > init && aux == index - 1) {
-                                        aux2 = aux2 + 2;
-                                    } else {
-                                        aux2 = aux2 + 1;
-                                    }
-                                    break;
-                                }
-
-                                //sets the new value of the offspring after the array has been completly read
-                                if (i + 1 == map.length) {
-                                    index2 = -1;
-                                    offspring2[w] = map[aux2][F];
-                                }
-                            }
-                        }
-
-                        //sets the same value to the offspring if no value is found in the female cut array
-                        if (aux1 < 0) {
-                            offspring1[w] = male[w];
-                        }
-
-                        //sets the same value to the offspring if no value is found in the male cut array
-                        if (aux2 < 0) {
-                            offspring2[w] = female[w];
-                        }
-
-                    }
-
-
-
+                //sets the new value of the offspring after the array has been completly read
+                if (i + 1 == map.length) {
+                    index2 = -1;
+                    offspring2[w] = map[aux2][F];
                 }
+            }
+        }
 
-                let Subject = function (cities) {
-                    this.cities = cities;
-                    this.fitness = getFitness(cities);
+        //sets the same value to the offspring if no value is found in the female cut array
+        if (aux1 < 0) {
+            offspring1[w] = male[w];
+        }
 
-                    this.mutate = function () {
-                        mutate(this.cities)
-                    }
-                    /**
-                     * Apply the mating algorithm PMX and return two resulting Subjects in a Array
-                     * @param {Subject} subject 
-                     */
-                    this.crossOver = function (female) {
-                        return PMX(this, female);
-                    }
+        //sets the same value to the offspring if no value is found in the male cut array
+        if (aux2 < 0) {
+            offspring2[w] = female[w];
+        }
 
-                    this.toString = function () {
-                        return this.fitness.toString();
-                        // return this.cities.toString();
-                    }
-                }
+    }
+}
 
-                /**
-                 * 
-                 * @param {[][]} city_distance_map 
-                 */
-                module.exports = function (distanceMatrix) {
-                    if (!distanceMatrix) {
-                        throw ReferenceError("city_distance_map can't be null on Subject importing");
-                    }
+let Subject = function (cities) {
+    this.cities = cities;
+    this.fitness = getFitness(cities);
 
-                    city_distance_map = distanceMatrix;
+    this.mutate = function () {
+        mutate(this.cities)
+    }
+    /**
+     * Apply the mating algorithm PMX and return two resulting Subjects in a Array
+     * @param {Subject} subject 
+     */
+    this.crossOver = function (female) {
+        return PMX(this, female);
+    }
 
-                    return Subject;
-                }
+    this.toString = function () {
+        return this.fitness.toString();
+        // return this.cities.toString();
+    }
+}
+
+/**
+ * 
+ * @param {[][]} city_distance_map 
+ */
+module.exports = function (distanceMatrix) {
+    if (!distanceMatrix) {
+        throw ReferenceError("city_distance_map can't be null on Subject importing");
+    }
+
+    city_distance_map = distanceMatrix;
+
+    return Subject;
+}

@@ -101,7 +101,6 @@ function PMX(male, female) {
     // completes the offspring array from 0 to the beginning of the cut array
 
     for (w = 0; w < init; w++) {
-
         // sets index to standard
         var index1 = -1;
         var index2 = -1;
@@ -153,17 +152,15 @@ function PMX(male, female) {
             }
         }
 
-
         // if index is different from standard it runs 
         while (index2 >= 0) {
-
             // Search the corresponding index of the female cut array in the male cut array 
             for (i = 0; i < map.length; i++) {
-
                 //Goes to the following index in case it finds an equal 
                 if (map[aux2][F] == map[i][M]) {
                     if (i = 0 && aux2 > init) {
-                        aux2 = init
+                        aux2 = init;
+
                     } else {
                         if (index2 > init && aux == index - 1) {
                             aux2 = aux2 + 2;
@@ -194,7 +191,6 @@ function PMX(male, female) {
     }
 
     // completes the offspring array from the end of the cut array to the end of the parent array
-
     for (w = end + 1; w < male.cities.length; w++) {
 
         // sets index to standard
@@ -284,7 +280,6 @@ function PMX(male, female) {
         if (aux2 < 0) {
             offspring2[w] = female.cities[w];
         }
-
     }
 
     descendant1 = new Subject (offspring1);

@@ -8,7 +8,7 @@ let auth = IOops.getEmailAuth();
 
 if(auth){
     var mailOptions = {
-        from: 'danielfilhoce@edu.unifor.br',
+        from: auth.user,
         to: 'danielfilhoce@gmail.com',
         subject: 'Aplicação finalizada',
         text: 'O algoritmo genético terminou de rodar'

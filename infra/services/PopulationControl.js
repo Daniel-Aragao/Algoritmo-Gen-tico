@@ -12,6 +12,8 @@ const service = function(cities, distanceMatrix, routine_parameters){
         gen: new Generation(0),
         counter: 0
     };
+    eventEmitter.emit('populationControl.start', generation);
+
     //Gerar População Inicial
     //Avaliação da População - calculo do fitness
     let population = new Population(routine_parameters.population, cities, Subject);
@@ -45,12 +47,12 @@ function continueGenerating(population, generation, iterations){
             return false;
         }
     }else{
-        generation.gen = new Generation(gen.counter, newSubject);
+        generation.gen = new Generation(generation.counter, newSubject);
 
         eventEmitter.emit('populationControl.new.solution')
     }
 
-    gen.counter++;
+    generation.counter++;
 
     eventEmitter.emit('populationControl.new.generation')
 

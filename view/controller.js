@@ -88,12 +88,14 @@ let parameters = {
 const mainMenuTemplate = [
     {
         label:'Parametros',
+        accelerator: 'p',
         click(){
             createParameterWindow();
         }
     },
     {
         label:'Iniciar',
+        accelerator: 'i',
         click(){
             Start(parameters);
         }

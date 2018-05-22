@@ -36,9 +36,25 @@ body{
 
 #graph-container, .graph-session{
     width: 100%;
-    height: 80%;
+    height: 90%;
 }
 
 #graph-container:empty{
     display: none;
+}
+
+#graph-container{
+    border: 1px solid #0e7fec;
+}
+
+.legenda{
+    border: 1px solid black;   
+    width: 10px;
+    height: 10px;
+}
+.legenda-branco{
+    background-color: white;
+}
+.legenda-preto{
+    background-color: black;
 }

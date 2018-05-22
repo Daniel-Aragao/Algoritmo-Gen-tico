@@ -12,7 +12,12 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="state-info">
-                    Geração: <span id="geracao">0</span>
+                    <span>
+                        Geração: <span id="geracao">0</span>
+                    </span>
+                    <span class="pull-right">
+                        Legenda: Primeiro: <span class="legenda legenda-branco">&emsp;</span> Último <span class="legenda legenda-preto">&emsp;</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -31,31 +36,8 @@
         </div>
     </div>
     
-    <!-- <script src="js/d3.v5.min.js"></script> -->
 </body>
-<!-- <script src="js/d3.v3.js"></script> -->
-<script src="js/d3.v3.min.js"></script>
-<script src="js/jsnetworkx.js"></script>
-<script>
-    // const electron = require('electron');
-    // const {ipcRenderer} = electron;
-    
-    // ipcRenderer.on('new.generation', function(e, counter){
-    //     geracao.innerText = counter;
-    // });
-    
-    // ipcRenderer.on('new.solution', function(e, generation){
-    //     solution.innerText = generation.id + " com o fitness: " + generation.subject.fitness.toFixed(2);
-    // });
-    
-    window.onload = function(){
-
-        var G = jsnx.completeGraph(6);
-        console.log(G.nodes());
-        jsnx.draw(G, {
-            element: '#graph-container',
-        });
-    }
-
-</script>
+<script src="js/cytoscape.js"></script>
+<script src="js/mainWindow.js"></script>
 </html>
+

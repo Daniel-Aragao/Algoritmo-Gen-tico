@@ -1,8 +1,10 @@
 const electron = require('electron');
 const url = require('url');
 const path = require('path');
+const EventController = require('../infra/services/EventController');
 
 const {app, BrowserWindow, Menu, ipcMain} = electron;
+const eventEmitter = EventController.getEmitter();
 
 let mainWindow;
 let parametersWindow;
@@ -20,7 +22,7 @@ let Config = function(start){
         });
 
         mainWindow.loadURL(url.format({
-            pathname: path.join(__dirname, 'view/mainWindow.html'),
+            pathname: path.join(__dirname, 'mainWindow.html'),
             protocol: 'file:',
             slashes:true
         }));
@@ -42,6 +44,7 @@ ipcMain.on('parametros:confirmed', function(e, item){
     console.log(item);
     parametersWindow.close();
 });
+
 
 
 function createParameterWindow(){
@@ -114,6 +117,27 @@ if(process.env.NODE_ENV !== 'production'){
         ]
     })
 }
+
+let generation = null;
+
+eventEmitter.on('populationControl.start', function(gener){
+    generation = gener;
+});
+
+eventEmitter.on('populationControl.stop', function(e){
+    // console.log("Programa finalizado. Solucao encontrada: " + generation.gen.toString());
+    // console.log('===============Finalizado===============')
+});
+
+eventEmitter.on('populationControl.new.solution', function(e){
+    // console.log('--------------Nova-Solucao--------------')
+    // console.log("Nova Solucao: " + generation.gen.toString());
+    mainWindow.webContents.send('new.solution', generation.gen);    
+});
+
+eventEmitter.on('populationControl.new.generation', function(e){
+    mainWindow.webContents.send('new.generation', generation.counter);    
+});
 
 module.exports = {
     Config

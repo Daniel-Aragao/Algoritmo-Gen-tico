@@ -4,9 +4,10 @@ let Generation = function(id, subject){
     this.id = id;
     this.subject = subject;
 
-    this.toString = function(){
-        return "Geracao: " + this.id + " Fitness:" + subject.fitness;
-    }
+}
+
+Generation.prototype.toString = function(){
+    return "Geracao: " + this.id + " Fitness:" + subject.fitness.toFixed(2);
 }
 
 module.exports = Generation

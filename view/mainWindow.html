@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Algoritmo Genético</title>
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="state-info">
+                    Geração: <span id="geracao">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="graph-session">
+            <div id="graph-container"></div> 
+            <div class="load-img">
+                
+            </div>
+        </div>
+        <div class="panel panel-default state-footer">
+            <div class="panel-body">
+                <div class="state-info ">
+                    Melhor solução na geração:  <span id="solution"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- <script src="js/d3.v5.min.js"></script> -->
+</body>
+<!-- <script src="js/d3.v3.js"></script> -->
+<script src="js/d3.v3.min.js"></script>
+<script src="js/jsnetworkx.js"></script>
+<script>
+    // const electron = require('electron');
+    // const {ipcRenderer} = electron;
+    
+    // ipcRenderer.on('new.generation', function(e, counter){
+    //     geracao.innerText = counter;
+    // });
+    
+    // ipcRenderer.on('new.solution', function(e, generation){
+    //     solution.innerText = generation.id + " com o fitness: " + generation.subject.fitness.toFixed(2);
+    // });
+    
+    window.onload = function(){
+
+        var G = jsnx.completeGraph(6);
+        console.log(G.nodes());
+        jsnx.draw(G, {
+            element: '#graph-container',
+        });
+    }
+
+</script>
+</html>

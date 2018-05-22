@@ -6,21 +6,21 @@ let Log = {
         let generation = null;
         eventEmitter.on('populationControl.start', function(gener){
             generation = gener;
-            console.log('=================Início=================')
+            console.log('=================Inicio=================')
         });
 
         eventEmitter.on('populationControl.stop', function(e){
-            console.log("Programa finalizado. Solução encontrada: " + generation.gen.toString());
+            console.log("Programa finalizado. Solucao encontrada: " + generation.gen.toString());
             console.log('===============Finalizado===============')
         });
 
         eventEmitter.on('populationControl.new.solution', function(e){
-            console.log('--------------Nova-Solução--------------')
-            console.log("Nova Solução: " + generation.gen.toString());
+            console.log('--------------Nova-Solucao--------------')
+            console.log("Nova Solucao: " + generation.gen.toString());
         });
 
         eventEmitter.on('populationControl.new.generation', function(e){
-            console.log("Geração: " + generation.counter);
+            console.log("Geracao: " + generation.counter);
         });
     }
 }

@@ -5,7 +5,7 @@ let Generation = function(id, subject){
     this.subject = subject;
 
     this.toString = function(){
-        return this.id + " " + subject.fitness;
+        return "Geracao: " + this.id + " Fitness:" + subject.fitness;
     }
 }
 

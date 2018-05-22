@@ -5,9 +5,10 @@ const IOops = require('./infra/services/IO_Operations');
 const CitiesDistances = require('./infra/services/ImportCitiesDistances');
 const mailConfig = require('./infra/services/MailConfig');
 const Log = require('./infra/services/Log');
+const viewController = require('./view/controller');
 
 parameters = {
-    file: './misc/input/100CIT.txt',
+    file: './misc/input/30CIT.txt',
     population: 5,
     tax_crossover: 0.75,
     tax_mutation: 0.1,
@@ -17,11 +18,15 @@ parameters = {
     population_selection: 'Elitismo'
 }
 
-let cities = IOops.CITRead(parameters.file);
-let distanceMatrix = CitiesDistances.getMatrix(cities, parameters.file);
 
 //mailConfig()
 Log.Config();
+viewController.Config(Start)
 
 // executar assíncronamente após inicializar tela principal do electron, possubilitando a alteração dos parâmetros por meio da interface
-PopulationControl(cities, distanceMatrix, parameters);
+function Start(parameters){
+    let cities = IOops.CITRead(parameters.file);
+    let distanceMatrix = CitiesDistances.getMatrix(cities, parameters.file);
+    
+    PopulationControl(cities, distanceMatrix, parameters);
+}

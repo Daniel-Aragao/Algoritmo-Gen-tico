@@ -40,6 +40,7 @@ function mutate(cities) {
     cities[a] = cities[b];
     cities[b] = c;
 }
+
 /**
  * Apply the mating algorithm PMX and return two resulting Subjects in a Array
  * @param {Subject} male 
@@ -56,18 +57,24 @@ function PMX(male, female) {
     let offspring1 = female.cities.slice(i,j)
     let offspring2 = male.cities.slice(i,j);
 
+    function c(offspring1, male, female){
+        let missing = female.cities.subtract(offspring1);
+        missing.forEach(item => {
+            let aux = item;
+            let index = male.cities.indexOf(item);
+    
+            while(index >= i || index < j){
+                item = offspring1[male.cities.indexOf(item)];
+                index = male.cities.indexOf(item);
+                console.log(i)
+            }
+    
+            offspring1[male.cities.indexOf(item)] = aux
+        });
+    }
+    c(offspring1, male, female)
+    c(offspring2, female, male)
     // para cada filho
-    let missing = female.cities.subtract(offspring1);
-    missing.forEach(item => {
-        let aux = item;
-        let index = male.cities.indexOf(item);
-        
-        while(index >= i || index <= j){
-            item = offspring1[male.cities.indexOf(item)]
-        }
-
-        offspring1[male.cities.indexOf(item)] = aux
-    });
     
     descendant1 = new Subject (offspring1);
     descendant2 = new Subject (offspring2);

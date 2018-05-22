@@ -12,6 +12,34 @@ Number.prototype.getRandomArbitrary = function (max) {
     return Math.random() * (max - min) + min;
   }
 
+Array.prototype.subtract = function(array_b, cb){
+    let array_a = this;
+    let array_c = [];
+
+    if (cb == null){
+        cb = function(a,b){
+            return a == b;
+        }
+    }
+
+    array_a.forEach(item => {
+        let isIn = false;
+        
+        for(let i = 0; i < array_b.length;i++){
+            if(cb(item,array_b[i])){
+                isIn = true;
+                break;
+            }
+        }
+
+        if(!isIn){
+            array_c.push(item);
+        }
+    });
+
+    return array_c
+}
+
 Array.prototype.shuffle = function(){
     var result = [];
     var runned_indexes = [-1];

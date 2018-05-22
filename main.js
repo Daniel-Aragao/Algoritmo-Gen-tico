@@ -5,7 +5,7 @@ const IOops = require('./infra/services/IO_Operations');
 const CitiesDistances = require('./infra/services/ImportCitiesDistances');
 const mailConfig = require('./infra/services/MailConfig');
 const Log = require('./infra/services/Log');
-const viewController = require('./view/controller');
+// const viewController = require('./view/controller');
 
 parameters = {
     file: './misc/input/30CIT.txt',
@@ -21,7 +21,8 @@ parameters = {
 
 //mailConfig()
 Log.Config();
-viewController.Config(Start)
+// viewController.Config(Start)
+Start(parameters);
 
 // executar assíncronamente após inicializar tela principal do electron, possubilitando a alteração dos parâmetros por meio da interface
 function Start(parameters){

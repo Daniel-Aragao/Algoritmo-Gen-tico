@@ -10,10 +10,11 @@ function getFitness(cities) {
     let total = 0;
     let index;
     // console.log(city_distance_map);
+
     for (index = 0; index < cities.length - 1; index++) {
         const cityOrigin = cities[index];
         const cityDestiny = cities[index + 1];
-
+        
         total += city_distance_map[cityOrigin.id][cityDestiny.id];
         // console.log(city_distance_map[cityOrigin.id][cityDestiny.id])
     }
@@ -23,58 +24,24 @@ function getFitness(cities) {
     return total;
 }
 
-/**
- * 
- * @param {Number} min 
- * @param {Number} max 
- */
-function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-}
-
-/**
- * 
- * @param {Number} min 
- * @param {Number} max 
- */
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-/**
- * 
- * @param {Number} numrows 
- * @param {Number} numcols
- * @param {Number} initial
- */
-Array.matrix = function (numrows, numcols, initial) {
-    var arr = [];
-    for (var i = 0; i < numrows; ++i) {
-        var columns = [];
-        for (var j = 0; j < numcols; ++j) {
-            columns[j] = initial;
-        }
-        arr[i] = columns;
-    }
-    return arr;
-}
 
 /**
  * 
  * @param {City[]} cities 
  */
 function mutate(cities) {
-    a = getRandomArbitrary(0, cities.length);
+    a = (0).getRandomArbitrary(cities.length);
     b = a;
 
     while (b == a) {
-        b = getRandomArbitrary(0, cities.length);
+        b = (0).getRandomArbitrary(cities.length);
     }
 
     c = cities[a];
     cities[a] = cities[b];
     cities[b] = c;
 }
+
 /**
  * Apply the mating algorithm PMX and return two resulting Subjects in a Array
  * @param {Subject} male 
@@ -84,17 +51,14 @@ function PMX(male, female) {
     var offspring1 = [];
     var offspring2 = [];
 
-    var init = getRandomInt(0, (male.cities.length - 1));
-    var end = getRandomInt(init, (male.cities.length - 1));
-    var map = Array.matrix(end - init + 1, 2, -1);
+    var init = (0).getRandomInt(male.cities.length - 1);
+    var end = (init).getRandomInt(male.cities.length - 1);
     var M = 0;
     var F = 1;
 
     for (i = init; i <= end; i++) {
         offspring1[i] = female.cities[i];
         offspring2[i] = male.cities[i];
-        map[i - init][0] = male.cities[i];
-        map[i - init][1] = female.cities[i];
     }
 
     // Cruzamento 
@@ -297,6 +261,19 @@ function PMX(male, female) {
         if (aux2 == -1) {
             offspring2[w] = female.cities[w];
         }
+        
+    }
+
+    let c =offspring2.findIndex(function(e){
+        return e == null || e == undefined
+    })
+
+    let t = offspring1.findIndex(function(e){
+        return e == null || e == undefined
+    })
+
+    if(c != -1 || t != -1){
+        throw new Error("wtf " + c + t)
     }
 
     descendant1 = new Subject(offspring1);
@@ -304,16 +281,17 @@ function PMX(male, female) {
     descendants = [descendant1, descendant2];
 
     return descendants;
-
 }
 
 let Subject = function (cities) {
     this.cities = cities;
     this.fitness = getFitness(cities);
-
+    
     this.mutate = function () {
         mutate(this.cities)
+        this.fitness = getFitness(cities);        
     }
+    
     /**
      * Apply the mating algorithm PMX and return two resulting Subjects in a Array
      * @param {Subject} subject 

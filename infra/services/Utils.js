@@ -12,6 +12,38 @@ Number.prototype.getRandomArbitrary = function (max) {
     return Math.random() * (max - min) + min;
   }
 
+Array.prototype.subtract = function(array_b, cb){
+    let array_a = this;
+    let array_c = [];
+
+    if (cb == null){
+        cb = function(a,b){
+            return a == b;
+        }
+    }
+
+    array_a.forEach(item => {
+        if(item == undefined){
+            throw new Error("item undefined on array subtraction")
+        }
+
+        let isIn = false;
+        
+        for(let i = 0; i < array_b.length;i++){
+            if(cb(item,array_b[i])){
+                isIn = true;
+                break;
+            }
+        }
+
+        if(!isIn){
+            array_c.push(item);
+        }
+    });
+
+    return array_c
+}
+
 Array.prototype.shuffle = function(){
     var result = [];
     var runned_indexes = [-1];
@@ -31,11 +63,17 @@ Array.prototype.shuffle = function(){
 }
 
 Array.prototype.toString = function(){
-    let result = "["
+    let result = ""
 
     this.forEach(function(e){
         result += ", " + e.toString();
     });
     result = result.replace(', ', '');
-    return result += "]";
+    return result;
+}
+
+Array.prototype.padd = function(n){
+    for(let i=0;i<n;i++){
+        this.push(null);
+    }
 }

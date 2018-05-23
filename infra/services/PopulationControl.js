@@ -7,6 +7,8 @@ const eventEmitter = EventController.getEmitter();
 
 
 const service = function(cities, distanceMatrix, routine_parameters){
+    console.log(routine_parameters)
+
     const Subject = require('../../core/Entities/Subject')(distanceMatrix);
     let generation = {
         gen: new Generation(0),

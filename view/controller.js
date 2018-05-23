@@ -9,15 +9,17 @@ const eventEmitter = EventController.getEmitter();
 let mainWindow;
 let parametersWindow;
 let Start = null;
+let parameters = null;
 
-let Config = function(start){
+let Config = function(start, rparameters){
+    parameters = rparameters
     Start = start;
     process.env.NODE_ENV = 'production';
 
     app.on('ready', function(){
         mainWindow = new BrowserWindow({
             width: 800,
-            height: 600,
+            height: 700,
             title: "Algoritmo Genético"
         });
 
@@ -50,8 +52,8 @@ ipcMain.on('parametros:confirmed', function(e, item){
 function createParameterWindow(){
     // Create new window
     parametersWindow = new BrowserWindow({
-        width: 500,
-        // height: 200,
+        width: 800,
+        height: 350,
         title: 'Parametros'
         // ,frame: false
     });
@@ -72,17 +74,6 @@ function createParameterWindow(){
     setTimeout(() => {
         parametersWindow.webContents.send('paremeters:init', parameters);        
     }, 1000);
-}
-
-let parameters = {
-    file: './misc/input/30CIT.txt',
-    population: 5,
-    tax_crossover: 0.75,
-    tax_mutation: 0.1,
-    stop_condition: 'not-better',
-    stop_param: '40',
-    selection_algorithm: 'Roleta',
-    population_selection: 'Elitismo'
 }
 
 const mainMenuTemplate = [
@@ -129,12 +120,12 @@ eventEmitter.on('populationControl.start', function(gener){
 eventEmitter.on('populationControl.stop', function(e){
     // console.log("Programa finalizado. Solucao encontrada: " + generation.gen.toString());
     // console.log('===============Finalizado===============')
+    mainWindow.webContents.send('new.solution', generation.gen, parameters.optimum);
 });
 
 eventEmitter.on('populationControl.new.solution', function(e){
     // console.log('--------------Nova-Solucao--------------')
     // console.log("Nova Solucao: " + generation.gen.toString());
-    mainWindow.webContents.send('new.solution', generation.gen);    
 });
 
 eventEmitter.on('populationControl.new.generation', function(e){

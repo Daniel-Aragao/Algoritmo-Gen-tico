@@ -10,10 +10,11 @@ function getFitness(cities) {
     let total = 0;
     let index;
     // console.log(city_distance_map);
+
     for (index = 0; index < cities.length - 1; index++) {
         const cityOrigin = cities[index];
         const cityDestiny = cities[index + 1];
-
+        
         total += city_distance_map[cityOrigin.id][cityDestiny.id];
         // console.log(city_distance_map[cityOrigin.id][cityDestiny.id])
     }
@@ -49,36 +50,48 @@ function mutate(cities) {
 function PMX(male, female) {
     let i = (0).getRandomInt(male.cities.length);
     let j = i;
-
-    while((j - 1) == i){
+    
+    while(j == i){
         j = (0).getRandomInt(male.cities.length);
     }
 
-    let offspring1 = female.cities.slice(i,j)
-    let offspring2 = male.cities.slice(i,j);
 
-    function c(offspring1, male, female){
-        let missing = female.cities.subtract(offspring1);
+    let offspring1 = (new Array(i)).concat(female.cities.slice(i,j));
+    let offspring2 =   (new Array(i)).concat(male.cities.slice(i,j));
+
+    function c(offspring, father, mother){
+        let missing = mother.cities.subtract(offspring);
+
         missing.forEach(item => {
             let aux = item;
-            let index = male.cities.indexOf(item);
+            let index = father.cities.findIndex(function(e){
+                return e.id == item.id
+            });
     
-            while(index >= i || index < j){
-                item = offspring1[male.cities.indexOf(item)];
-                index = male.cities.indexOf(item);
-                console.log(i)
+            while(i <= index && index < j){
+                item = offspring[index];
+                index = father.cities.findIndex(function(e){
+                    return e.id == item.id
+                });
             }
-    
-            offspring1[male.cities.indexOf(item)] = aux
+
+            if(index == -1){throw new Error("wtf?" + father.cities.toString())}
+            offspring[index] = aux
         });
+        
+        let nullindex = offspring.findIndex(function(e){return e == null || e == undefined})
+        if(nullindex != -1){
+            throw new Error("failure in crossover on index: " + nullindex);
+        }
+        
     }
+
     c(offspring1, male, female)
     c(offspring2, female, male)
-    // para cada filho
     
-    descendant1 = new Subject (offspring1);
-    descendant2 = new Subject (offspring2);
-    descendants = [descendant1, descendant2];
+    let descendant1 = new Subject(offspring1);
+    let descendant2 = new Subject(offspring2);
+    let descendants = [descendant1, descendant2];
     
     return descendants;    
 }
@@ -86,10 +99,12 @@ function PMX(male, female) {
 let Subject = function (cities) {
     this.cities = cities;
     this.fitness = getFitness(cities);
-
+    
     this.mutate = function () {
         mutate(this.cities)
+        this.fitness = getFitness(cities);        
     }
+    
     /**
      * Apply the mating algorithm PMX and return two resulting Subjects in a Array
      * @param {Subject} subject 

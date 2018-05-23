@@ -12,7 +12,7 @@ var City = function(id,x,y){
     }
 
     this.toString = function(){
-        return "("+this.id+","+this.x+","+this.y+")"
+        return this.id+", "+this.x+", "+this.y
     }
 }
 

@@ -66,7 +66,7 @@ let Population = function (size, cities, Subject){
         newSubjects.forEach(subject => {
             if(Math.random() <= tax){
                 subject.mutate()
-            }
+            }            
         });
     }
 

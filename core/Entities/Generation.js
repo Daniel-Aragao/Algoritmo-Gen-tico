@@ -7,7 +7,7 @@ let Generation = function(id, subject){
 }
 
 Generation.prototype.toString = function(){
-    return "Geracao: " + this.id + " Fitness:" + subject.fitness.toFixed(2);
+    return "Geracao: " + this.id + " Fitness:" + this.subject.fitness.toFixed(2);
 }
 
 module.exports = Generation

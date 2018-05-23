@@ -23,6 +23,10 @@ Array.prototype.subtract = function(array_b, cb){
     }
 
     array_a.forEach(item => {
+        if(item == undefined){
+            throw new Error("item undefined on array subtraction")
+        }
+
         let isIn = false;
         
         for(let i = 0; i < array_b.length;i++){
@@ -59,11 +63,17 @@ Array.prototype.shuffle = function(){
 }
 
 Array.prototype.toString = function(){
-    let result = "["
+    let result = ""
 
     this.forEach(function(e){
         result += ", " + e.toString();
     });
     result = result.replace(', ', '');
-    return result += "]";
+    return result;
+}
+
+Array.prototype.padd = function(n){
+    for(let i=0;i<n;i++){
+        this.push(null);
+    }
 }

@@ -5,8 +5,10 @@ ipcRenderer.on('new.generation', function(e, counter){
     geracao.innerText = counter;
 });
 
-ipcRenderer.on('new.solution', function(e, generation){
+ipcRenderer.on('new.solution', function(e, generation, optimum){
     solution.innerText = generation.id + " com o fitness: " + generation.subject.fitness.toFixed(2);
+    acerto.innerText = ((optimum/generation.subject.fitness)* 100).toFixed(2) + "%";
+
     let elements = extractElements(generation);
     loadGraph(elements)
 });
@@ -39,10 +41,6 @@ function extractElements(generation){
                 target: target.id
             }
         })
-
-        // city.id
-        // city.x;
-        // city.y;
     }
 
     return elements;
@@ -84,6 +82,7 @@ function loadGraph(elements){
         }, {
         duration: 500
     });
+
     let nodelist = cy.nodes();
     nodelist[0].style('background-color', 'white')
     nodelist[nodelist.length - 1].style('background-color', 'black')
